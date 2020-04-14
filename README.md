@@ -45,6 +45,11 @@ end
 EOF
 ```
 
+The `cdrtools` package is required to build the ISO. Log into the "joyent" brand zone and install the package:
+```
+pkgin -y in cdrtools
+```
+
 ## Setup
 
 This relies on the sdc-vmtools repo as a submodule.  You can get the right

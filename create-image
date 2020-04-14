@@ -305,6 +305,7 @@ option:
 	-h	This message
 	-d	Distro name. One of centos, redhat, fedora
 	-r	Distro release
+	-u	Distro update (minor version)
 
 Commands:
 	fetch	Fetch the installation ISO
@@ -317,13 +318,16 @@ EOF
 
 typeset -l distro_l=centos
 release=
+update=
 
-while getopts :hd:r: opt; do
+while getopts :hd:r:u: opt; do
 	case "$opt" in
 	d)
 		distro_l=$OPTARG
 		;;
 	r)  release=$OPTARG
+		;;
+	u)  update=$OPTARG
 		;;
 	h)
 		usage;
@@ -346,6 +350,9 @@ shift $(( OPTIND - 1 ))
 case $distro_l in
 centos)
 	distro=CentOS
+	;;
+ol)
+	distro="Oracle Linux"
 	;;
 *)
 	echo "$0: $distro_l not yet supported" 1>&2
